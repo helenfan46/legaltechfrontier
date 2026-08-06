@@ -203,6 +203,95 @@
             background: rgba(102, 126, 234, 0.12);
             border-color: rgba(102, 126, 234, 0.9);
         }
+
+        /* ── Events: upcoming + scrollable series ── */
+        .upcoming-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto 3.5rem;
+        }
+        .event-series { max-width: 1100px; margin: 0 auto; }
+        .series-block { margin-bottom: 3rem; }
+        .series-head { margin-bottom: 1.1rem; }
+        .series-head h3 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin: 0 0 0.3rem;
+        }
+        .series-sub { color: var(--text-secondary); font-size: 0.95rem; margin: 0; }
+        .event-scroll {
+            display: flex;
+            gap: 1.25rem;
+            overflow-x: auto;
+            padding: 0.4rem 0.25rem 1.25rem;
+            scroll-snap-type: x proximity;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(102, 126, 234, 0.5) transparent;
+        }
+        .event-scroll::-webkit-scrollbar { height: 8px; }
+        .event-scroll::-webkit-scrollbar-thumb { background: rgba(102, 126, 234, 0.5); border-radius: 8px; }
+        .event-scroll::-webkit-scrollbar-track { background: transparent; }
+        .event-card {
+            flex: 0 0 clamp(270px, 44%, 420px);
+            scroll-snap-align: start;
+            background: var(--bg-card);
+            border: 1px solid rgba(102, 126, 234, 0.18);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.25s, border-color 0.25s;
+        }
+        .upcoming-grid .event-card { flex: initial; }
+        .event-card:hover { transform: translateY(-4px); border-color: rgba(102, 126, 234, 0.5); }
+        .event-card-media { position: relative; }
+        .event-card .event-photo {
+            display: block;
+            width: 100%;
+            margin: 0;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            border-radius: 0;
+            filter: none;
+        }
+        .event-when {
+            position: absolute;
+            top: 0.75rem;
+            left: 0.75rem;
+            background: rgba(10, 14, 39, 0.82);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+        }
+        .event-when.up { background: var(--gradient-secondary); }
+        .event-card-body {
+            padding: 1.1rem 1.25rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .event-card-body h4 {
+            font-size: 1.08rem;
+            color: var(--text-primary);
+            margin: 0 0 0.6rem;
+            line-height: 1.35;
+        }
+        .event-card-body .location {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin: 0 0 1rem;
+            flex: 1;
+        }
+        .recap-btn--soon { opacity: 0.6; cursor: default; align-self: flex-start; }
+        @media (max-width: 600px) {
+            .event-card { flex-basis: 82%; }
+        }
         .partner {
             background: var(--bg-card);
             border: 1px solid rgba(102, 126, 234, 0.18);
@@ -237,6 +326,15 @@
         }
         .partner:hover .partner-logo {
             box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
+        }
+        /* Pillsbury wordmark is tall & narrow — give it more height so the
+           red letters read at roughly the same size as Cooley's. */
+        .partner-logo--pill {
+            height: 92px;
+            padding: 8px 14px;
+        }
+        @media (max-width: 600px) {
+            .partner-logo--pill { height: 76px; padding: 6px 12px; }
         }
         /* Caption hidden by default; shown only when logo fails to load */
         .partner-name {
@@ -562,217 +660,210 @@
     <!-- Events Section -->
     <section id="events" class="events">
         <div class="container">
-            <h2 class="section-title">Upcoming Event</h2>
-
-            <div class="upcoming-card">
-                <div class="upcoming-poster">
-                    <a href="https://luma.com/fzdahvh5" target="_blank" rel="noopener noreferrer">
-                        <img src="img/events/upcoming-ai-native-legal-team.jpg" alt="What Is an AI-Native Legal Team? — event poster. Friday, July 17, 2026, 6:00-8:00 PM ET, Cooley LLP New York. Featured speakers: Stacy Lettie (Organon), Marc Mandel (EXOS), Matthew Wojtkowiak (ECI)." loading="lazy">
-                    </a>
-                </div>
-                <div class="upcoming-body">
-                    <span class="upcoming-badge">Next Up</span>
-                    <h3>What Is an AI-Native Legal Team?</h3>
-                    <div class="event-meta">
-                        <div class="row">
-                            <span class="ico">📅</span>
-                            <div><strong>Friday, July 17, 2026</strong> &middot; 6:00&ndash;8:00&nbsp;PM ET</div>
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="upcoming-grid">
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/upcoming-data-layer.png" alt="How to Build Your Data Layer for AI Transformation — event poster" loading="lazy">
+                            <span class="event-when up">Aug 11 · 2026</span>
                         </div>
-                        <div class="row">
-                            <span class="ico">📍</span>
-                            <div><strong>Cooley LLP</strong>, New York &mdash; 55 Hudson Yards, NY</div>
+                        <div class="event-card-body">
+                            <h4>How to Build Your Data Layer for AI Transformation</h4>
+                            <p class="location"><span class="icon">📍</span> Palo Alto, CA</p>
+                            <a href="https://luma.com/aalhoruq" class="recap-btn" target="_blank" rel="noopener noreferrer">Join Waitlist →</a>
                         </div>
-                        <div class="row">
-                            <span class="ico">🤝</span>
-                            <div>Hosted by <strong>Legal Tech Frontier</strong>, <strong>Cooley LLP</strong> &amp; <strong>Asian American Bar Association of New York</strong></div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/upcoming-ai-native-lawyer.png" alt="What Is an AI-Native Lawyer? workshop poster" loading="lazy">
+                            <span class="event-when up">Sep 15 · 2026</span>
                         </div>
-                        <div class="row">
-                            <span class="ico">🎟️</span>
-                            <div>Free to attend &middot; <strong>RSVP by July 15</strong></div>
+                        <div class="event-card-body">
+                            <h4>What Is an AI-Native Lawyer?</h4>
+                            <p class="location"><span class="icon">📍</span> Legora, New York City</p>
+                            <span class="recap-btn recap-btn--soon">RSVP coming soon</span>
                         </div>
-                    </div>
-                    <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; align-items: center;">
-                        <a href="https://luma.com/fzdahvh5" target="_blank" rel="noopener noreferrer" class="cta-btn">Register on Luma &rarr;</a>
-                        <a href="/nyc" class="cta-btn cta-btn-secondary">📊 Slide Deck &rarr;</a>
-                    </div>
-                </div>
+                    </article>
             </div>
 
-            <div class="past-events" style="margin-top: 4rem;">
-                <h3 class="timeline-title">Past Events</h3>
-<div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span class="month">May</span>
-                                <span class="year">2026</span>
-                            </div>
-                            <div class="timeline-content">
-                                <img class="event-photo" src="img/events/11-stanford-ai-native.webp" alt="What Is an AI-Native Law Firm? meetup at Stanford Campus group photo" loading="lazy">
-                                <h4>What Is an AI-Native Law Firm?</h4>
-                                <p class="location">
-                                    <span class="icon">📍</span>
-                                    Stanford Campus, Palo Alto, CA
-                                </p>
-                                <a href="https://helenfan1.substack.com/p/how-silicon-valley-is-defining-ai" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span class="month">Apr</span>
-                                <span class="year">2026</span>
-                            </div>
-                            <div class="timeline-content">
-                                <img class="event-photo" src="img/events/01-pku-shenzhen.jpg" alt="How to Become an AI-Native In-House Counsel at PKU Shenzhen lecture hall" loading="lazy">
-                                <h4>How to Become an AI-Native In-House Counsel</h4>
-                                <p class="location">
-                                    <span class="icon">📍</span>
-                                    Peking University, Shenzhen, China
-                                </p>
-                                <a href="https://open.substack.com/pub/helenfan1/p/how-to-become-an-ai-native-in-house" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span class="month">Mar</span>
-                                <span class="year">2026</span>
-                            </div>
-                            <div class="timeline-content">
-                                <img class="event-photo" src="img/events/02-tokyo-agi-summit.jpg" alt="Way to AGI 2026 Tokyo Summit group photo" loading="lazy">
-                                <h4>Way to AGI 2026 Tokyo Summit</h4>
-                                <p class="location">
-                                    <span class="icon">📍</span>
-                                    Tokyo, Japan
-                                </p>
-                                <a href="https://helenlegalailab.notion.site/When-Vertical-AI-Gets-Real-36918667622480308eefde3569231ed2" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-date">
-                                <span class="month">Mar</span>
-                                <span class="year">2026</span>
-                            </div>
-                            <div class="timeline-content">
-                                <img class="event-photo" src="img/events/03-tokyo-openclaw.jpg" alt="OpenClaw x Legal Professionals Tokyo meetup group photo" loading="lazy">
-                                <h4>OpenClaw x Legal Professionals</h4>
-                                <p class="location">
-                                    <span class="icon">📍</span>
-                                    Tokyo, Japan
-                                </p>
-                                <a href="https://helenlegalailab.notion.site/What-Can-OpenClaw-Do-for-Us-Tokyo-369186676224807ea6a7d651784a1493" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                        <div class="timeline-date">
-                            <span class="month">Jan</span>
-                            <span class="year">2026</span>
-                        </div>
-                        <div class="timeline-content">
-                            <img class="event-photo" src="img/events/04-fb-house.jpg" alt="What Makes Lawyers Actually Use AI? meetup at Facebook House group photo" loading="lazy">
-                            <h4>What Makes Lawyers Actually Use AI?</h4>
-                            <p class="location">
-                                <span class="icon">📍</span>
-                                Facebook House, Los Altos, CA
-                            </p>
-                            <a href="https://substack.com/home/post/p-188884545" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                        </div>
+            <div class="event-series">
+                <div class="series-block">
+                    <div class="series-head">
+                        <h3>Frontier Table</h3>
+                        <p class="series-sub">Closed-door, invite-only roundtables for firm and legal-department leaders.</p>
                     </div>
-                    <div class="timeline-item event-hidden">
-                        <div class="timeline-date">
-                            <span class="month">Dec</span>
-                            <span class="year">2025</span>
+                    <div class="event-scroll">
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/upcoming-data-layer.png" alt="How to Build Your Data Layer for AI Transformation — event poster" loading="lazy">
+                            <span class="event-when up">Aug 11 · 2026</span>
                         </div>
-                        <div class="timeline-content">
+                        <div class="event-card-body">
+                            <h4>How to Build Your Data Layer for AI Transformation</h4>
+                            <p class="location"><span class="icon">📍</span> Palo Alto, CA</p>
+                            <a href="https://luma.com/aalhoruq" class="recap-btn" target="_blank" rel="noopener noreferrer">Join Waitlist →</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
                             <img class="event-photo" src="img/events/05-hsf-hk.jpg" alt="GC X AI Adoption meetup at HSF Hong Kong group photo" loading="lazy">
+                            <span class="event-when">Dec 2025</span>
+                        </div>
+                        <div class="event-card-body">
                             <h4>GC X AI Adoption</h4>
-                            <p class="location">
-                                <span class="icon">📍</span>
-                                Herbert Smith Freehills Kramer Office, Central, Hong Kong
-                            </p>
-                            <a href="https://www.linkedin.com/posts/helenfanlegalai_sv-legal-tech-frontier-community-gc-ai-activity-7410304744017027072-u8tE?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB69MUUBZrW0stD7-0NXIzsV-eBieLqcTOM" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                            <p class="location"><span class="icon">📍</span> HSF Kramer, Hong Kong</p>
+                            <a href="https://www.linkedin.com/posts/helenfanlegalai_sv-legal-tech-frontier-community-gc-ai-activity-7410304744017027072-u8tE" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
                         </div>
-                    </div>
-                    <div class="timeline-item event-hidden">
-                        <div class="timeline-date">
-                            <span class="month">Dec</span>
-                            <span class="year">2025</span>
-                        </div>
-                        <div class="timeline-content">
-                            <img class="event-photo" src="img/events/06-shanghai.jpg" alt="Shanghai meetup group photo with Lujiazui skyline" loading="lazy">
-                            <h4>Where Should Young Legal Professionals Go in the Age of AI?</h4>
-                            <p class="location">
-                                <span class="icon">📍</span>
-                                White Magnolia Plaza, Shanghai
-                            </p>
-                            <a href="https://www.linkedin.com/posts/helenfanlegalai_sv-legal-tech-frontier-community-shanghai-activity-7405605624731906048-uYjx?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB69MUUBZrW0stD7-0NXIzsV-eBieLqcTOM" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item event-hidden">
-                        <div class="timeline-date">
-                            <span class="month">Nov</span>
-                            <span class="year">2025</span>
-                        </div>
-                        <div class="timeline-content">
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
                             <img class="event-photo" src="img/events/07-hankun-beijing.jpg" alt="Beijing meetup at Han Kun Law Offices group photo" loading="lazy">
+                            <span class="event-when">Nov 2025</span>
+                        </div>
+                        <div class="event-card-body">
                             <h4>How Legal Professionals Can Navigate Opportunities and Change in the AI Era</h4>
-                            <p class="location">
-                                <span class="icon">📍</span>
-                                Han Kun Law Offices, Beijing (closed-door meeting)
-                            </p>
+                            <p class="location"><span class="icon">📍</span> Han Kun Law Offices, Beijing</p>
                             <a href="https://www.linkedin.com/feed/update/urn:li:activity:7400938648042479616/" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
                         </div>
-                    </div>
-
-                    <div class="timeline-item event-hidden">
-                        <div class="timeline-date">
-                            <span class="month">Oct</span>
-                            <span class="year">2025</span>
-                        </div>
-                        <div class="timeline-content">
-                            <img class="event-photo" src="img/events/08-stanford.webp" alt="Litigation X AI meetup at Stanford group photo" loading="lazy">
-                            <h4>Litigation X AI</h4>
-                            <p class="location">
-                                <span class="icon">📍</span>
-                                Stanford University, Palo Alto, CA
-                            </p>
-                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7388687602385801217/" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item event-hidden">
-                        <div class="timeline-date">
-                            <span class="month">Sep</span>
-                            <span class="year">2025</span>
-                        </div>
-                        <div class="timeline-content">
-                            <img class="event-photo" src="img/events/09-san-jose.webp" alt="IP Law X AI meetup in San Jose illustration" loading="lazy">
-                            <h4>IP Law X AI</h4>
-                            <p class="location">
-                                <span class="icon">📍</span>
-                                San Jose, CA
-                            </p>
-                            <a href="https://www.linkedin.com/posts/helenfanlegalai_notion-the-connected-workspace-with-site-activity-7375598179901136897-sjKc?utm_source=share&utm_medium=member_desktop&rcm=ACoAAB69MUUBZrW0stD7-0NXIzsV-eBieLqcTOM" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item event-hidden">
-                        <div class="timeline-date">
-                            <span class="month">Aug</span>
-                            <span class="year">2025</span>
-                        </div>
-                        <div class="timeline-content">
-                            <img class="event-photo" src="img/events/10-santa-clara.webp" alt="Santa Clara kickoff meetup illustration" loading="lazy">
-                            <h4>Legal AI Meetup</h4>
-                            <p class="location">
-                                <span class="icon">📍</span>
-                                Santa Clara, CA
-                            </p>
-                            <a href="https://www.linkedin.com/posts/helenfanlegalai_legalai-legaltech-bayarealawyers-activity-7368703129531416579-8rOI" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
-                        </div>
+                    </article>
                     </div>
                 </div>
-                <div class="see-more-wrap">
-                    <button type="button" class="see-more-btn" onclick="document.querySelectorAll('.timeline-item.event-hidden').forEach(function(e){e.classList.remove('event-hidden');}); this.parentElement.style.display='none';">See more events →</button>
+                <div class="series-block">
+                    <div class="series-head">
+                        <h3>AI-Native Sessions</h3>
+                        <p class="series-sub">Deep dives on what an AI-native legal practice actually looks like.</p>
+                    </div>
+                    <div class="event-scroll">
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/upcoming-ai-native-lawyer.png" alt="What Is an AI-Native Lawyer? workshop poster" loading="lazy">
+                            <span class="event-when up">Sep 15 · 2026</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>What Is an AI-Native Lawyer?</h4>
+                            <p class="location"><span class="icon">📍</span> Legora, New York City</p>
+                            <span class="recap-btn recap-btn--soon">RSVP coming soon</span>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/upcoming-ai-native-legal-team.jpg" alt="What Is an AI-Native Legal Team? event poster" loading="lazy">
+                            <span class="event-when">Jul 2026</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>What Is an AI-Native Legal Team?</h4>
+                            <p class="location"><span class="icon">📍</span> Cooley LLP, New York</p>
+                            <a href="/nyc" class="recap-btn" target="_blank" rel="noopener noreferrer">📊 Slide Deck →</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/11-stanford-ai-native.webp" alt="What Is an AI-Native Law Firm? meetup at Stanford group photo" loading="lazy">
+                            <span class="event-when">May 2026</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>What Is an AI-Native Law Firm?</h4>
+                            <p class="location"><span class="icon">📍</span> Stanford Campus, Palo Alto, CA</p>
+                            <a href="https://helenfan1.substack.com/p/how-silicon-valley-is-defining-ai" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/01-pku-shenzhen.jpg" alt="How to Become an AI-Native In-House Counsel at PKU Shenzhen" loading="lazy">
+                            <span class="event-when">Apr 2026</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>How to Become an AI-Native In-House Counsel</h4>
+                            <p class="location"><span class="icon">📍</span> Peking University, Shenzhen, China</p>
+                            <a href="https://open.substack.com/pub/helenfan1/p/how-to-become-an-ai-native-in-house" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    </div>
+                </div>
+                <div class="series-block">
+                    <div class="series-head">
+                        <h3>Legal AI Meetups</h3>
+                        <p class="series-sub">Our early community gatherings across the US and Asia.</p>
+                    </div>
+                    <div class="event-scroll">
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/02-tokyo-agi-summit.jpg" alt="Way to AGI 2026 Tokyo Summit group photo" loading="lazy">
+                            <span class="event-when">Mar 2026</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>Way to AGI 2026 Tokyo Summit</h4>
+                            <p class="location"><span class="icon">📍</span> Tokyo, Japan</p>
+                            <a href="https://helenlegalailab.notion.site/When-Vertical-AI-Gets-Real-36918667622480308eefde3569231ed2" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/03-tokyo-openclaw.jpg" alt="OpenClaw x Legal Professionals Tokyo meetup group photo" loading="lazy">
+                            <span class="event-when">Mar 2026</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>OpenClaw x Legal Professionals</h4>
+                            <p class="location"><span class="icon">📍</span> Tokyo, Japan</p>
+                            <a href="https://helenlegalailab.notion.site/What-Can-OpenClaw-Do-for-Us-Tokyo-369186676224807ea6a7d651784a1493" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/04-fb-house.jpg" alt="What Makes Lawyers Actually Use AI? meetup at Facebook House group photo" loading="lazy">
+                            <span class="event-when">Jan 2026</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>What Makes Lawyers Actually Use AI?</h4>
+                            <p class="location"><span class="icon">📍</span> Facebook House, Los Altos, CA</p>
+                            <a href="https://substack.com/home/post/p-188884545" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/06-shanghai.jpg" alt="Shanghai meetup group photo with Lujiazui skyline" loading="lazy">
+                            <span class="event-when">Dec 2025</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>Where Should Young Legal Professionals Go in the Age of AI?</h4>
+                            <p class="location"><span class="icon">📍</span> White Magnolia Plaza, Shanghai</p>
+                            <a href="https://www.linkedin.com/posts/helenfanlegalai_sv-legal-tech-frontier-community-shanghai-activity-7405605624731906048-uYjx" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/08-stanford.webp" alt="Litigation X AI meetup at Stanford group photo" loading="lazy">
+                            <span class="event-when">Oct 2025</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>Litigation X AI</h4>
+                            <p class="location"><span class="icon">📍</span> Stanford University, Palo Alto, CA</p>
+                            <a href="https://www.linkedin.com/feed/update/urn:li:activity:7388687602385801217/" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/09-san-jose.webp" alt="IP Law X AI meetup in San Jose illustration" loading="lazy">
+                            <span class="event-when">Sep 2025</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>IP Law X AI</h4>
+                            <p class="location"><span class="icon">📍</span> San Jose, CA</p>
+                            <a href="https://www.linkedin.com/posts/helenfanlegalai_notion-the-connected-workspace-with-site-activity-7375598179901136897-sjKc" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    <article class="event-card">
+                        <div class="event-card-media">
+                            <img class="event-photo" src="img/events/10-santa-clara.webp" alt="Santa Clara kickoff meetup illustration" loading="lazy">
+                            <span class="event-when">Aug 2025</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h4>Legal AI Meetup</h4>
+                            <p class="location"><span class="icon">📍</span> Santa Clara, CA</p>
+                            <a href="https://www.linkedin.com/posts/helenfanlegalai_legalai-legaltech-bayarealawyers-activity-7368703129531416579-8rOI" class="recap-btn" target="_blank" rel="noopener noreferrer">View Recap</a>
+                        </div>
+                    </article>
+                    </div>
                 </div>
             </div>
         </div>
@@ -798,7 +889,7 @@
                     <div class="partner-name">Cooley LLP</div>
                 </a>
                 <a class="partner" href="https://www.pillsburylaw.com" target="_blank" rel="noopener noreferrer" title="Pillsbury Winthrop Shaw Pittman LLP">
-                    <img class="partner-logo" src="img/partners/pillsbury.png" alt="Pillsbury Winthrop Shaw Pittman LLP" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo partner-logo--pill" src="img/partners/pillsbury.png" alt="Pillsbury Winthrop Shaw Pittman LLP" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Pillsbury</div>
                 </a>
                 <a class="partner" href="https://www.hsfkramer.com" target="_blank" rel="noopener noreferrer" title="Herbert Smith Freehills Kramer">
