@@ -192,14 +192,20 @@
             background: rgba(102, 126, 234, 0.06);
         }
         .partner-logo {
-            max-height: 56px;
-            max-width: 85%;
+            display: block;
+            width: 100%;
+            max-width: 190px;
+            height: 66px;
             object-fit: contain;
-            filter: grayscale(0.35) brightness(1.05);
-            transition: filter 0.25s;
+            background: #fff;
+            border-radius: 10px;
+            padding: 11px 16px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+            transition: box-shadow 0.25s, transform 0.25s;
         }
         .partner:hover .partner-logo {
-            filter: grayscale(0) brightness(1.1);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.28);
         }
         /* Caption hidden by default; shown only when logo fails to load */
         .partner-name {
@@ -242,7 +248,7 @@
                 min-height: 110px;
                 padding: 1.25rem 0.75rem;
             }
-            .partner-logo { max-height: 44px; }
+            .partner-logo { height: 54px; padding: 9px 12px; }
         }
 
         .founded-by {
@@ -738,39 +744,47 @@
 
             <div class="partners-grid">
                 <a class="partner" href="https://www.stanford.edu" target="_blank" rel="noopener noreferrer" title="Stanford University">
-                    <img class="partner-logo" src="https://logo.clearbit.com/stanford.edu?size=256" alt="Stanford University" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/stanford.png" alt="Stanford University" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Stanford University</div>
                 </a>
                 <a class="partner" href="https://www.pku.edu.cn" target="_blank" rel="noopener noreferrer" title="Peking University">
-                    <img class="partner-logo" src="https://logo.clearbit.com/pku.edu.cn?size=256" alt="Peking University" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/pku.png" alt="Peking University" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Peking University</div>
                 </a>
                 <a class="partner" href="https://www.hsfkramer.com" target="_blank" rel="noopener noreferrer" title="Herbert Smith Freehills Kramer">
-                    <img class="partner-logo" src="https://logo.clearbit.com/hsfkramer.com?size=256" alt="Herbert Smith Freehills Kramer" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/hsfkramer.png" alt="Herbert Smith Freehills Kramer" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Herbert Smith Freehills Kramer</div>
                 </a>
                 <a class="partner" href="https://www.hankunlaw.com" target="_blank" rel="noopener noreferrer" title="Han Kun Law Offices">
-                    <img class="partner-logo" src="https://logo.clearbit.com/hankunlaw.com?size=256" alt="Han Kun Law Offices" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/hankun.svg" alt="Han Kun Law Offices" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Han Kun Law Offices</div>
                 </a>
-                <a class="partner" href="https://www.waytoagi.com" target="_blank" rel="noopener noreferrer" title="WaytoAGI">
-                    <img class="partner-logo" src="https://logo.clearbit.com/waytoagi.com?size=256" alt="WaytoAGI" loading="lazy" onerror="this.classList.add('failed')">
+                <a class="partner" href="https://waytoagi.com" target="_blank" rel="noopener noreferrer" title="WaytoAGI">
+                    <img class="partner-logo" src="img/partners/waytoagi.svg" alt="WaytoAGI" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">WaytoAGI</div>
                 </a>
                 <a class="partner" href="https://www.linkloud.com" target="_blank" rel="noopener noreferrer" title="Linkloud">
-                    <img class="partner-logo" src="https://logo.clearbit.com/linkloud.com?size=256" alt="Linkloud" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/linkloud.png" alt="Linkloud" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Linkloud</div>
                 </a>
                 <a class="partner" href="https://about.meta.com" target="_blank" rel="noopener noreferrer" title="Facebook House (hosted by Meta)">
-                    <img class="partner-logo" src="https://logo.clearbit.com/meta.com?size=256" alt="Facebook House" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/meta.png" alt="Facebook House" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Facebook House</div>
                 </a>
                 <a class="partner" href="https://www.cooley.com" target="_blank" rel="noopener noreferrer" title="Cooley LLP">
-                    <img class="partner-logo" src="https://logo.clearbit.com/cooley.com?size=256" alt="Cooley LLP" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/cooley.png" alt="Cooley LLP" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Cooley LLP</div>
                 </a>
+                <a class="partner" href="https://www.pillsburylaw.com" target="_blank" rel="noopener noreferrer" title="Pillsbury Winthrop Shaw Pittman LLP">
+                    <img class="partner-logo" src="img/partners/pillsbury.svg" alt="Pillsbury Winthrop Shaw Pittman LLP" loading="lazy" onerror="this.classList.add('failed')">
+                    <div class="partner-name">Pillsbury</div>
+                </a>
+                <a class="partner" href="https://skills.law" target="_blank" rel="noopener noreferrer" title="skills.law">
+                    <img class="partner-logo" src="img/partners/skillslaw.png" alt="skills.law" loading="lazy" onerror="this.classList.add('failed')">
+                    <div class="partner-name">skills.law</div>
+                </a>
                 <a class="partner" href="https://www.aabany.org" target="_blank" rel="noopener noreferrer" title="Asian American Bar Association of New York">
-                    <img class="partner-logo" src="https://logo.clearbit.com/aabany.org?size=256" alt="Asian American Bar Association of New York" loading="lazy" onerror="this.classList.add('failed')">
+                    <img class="partner-logo" src="img/partners/aabany.png" alt="Asian American Bar Association of New York" loading="lazy" onerror="this.classList.add('failed')">
                     <div class="partner-name">Asian American Bar Association of New York</div>
                 </a>
             </div>
