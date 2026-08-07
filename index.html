@@ -475,16 +475,19 @@
         /* ── Hero slogan ── */
         .hero-slogan {
             font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+            font-size: clamp(1.05rem, 2.2vw, 1.45rem);
             font-weight: 500;
             font-style: italic;
             line-height: 1.4;
             color: var(--text-secondary);
             letter-spacing: 0.2px;
             margin: 0.6rem auto 1rem;
-            max-width: 560px;
+            max-width: none;
+            white-space: nowrap;
         }
-        @media (max-width: 600px) { .hero-slogan { font-size: 1.1rem; } }
+        @media (max-width: 760px) {
+            .hero-slogan { font-size: 1.05rem; white-space: normal; max-width: 460px; }
+        }
 
         /* ── Highlighted "Subscribe" link inside the updates card ── */
         .subscribe-link {
