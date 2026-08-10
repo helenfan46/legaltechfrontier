@@ -16,6 +16,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="redesign.css">
+    <style id="ltf-tweaks">
+      /* Han Kun's wordmark is very wide (~6:1) — keep it from dominating the partner grid */
+      .partners-grid img[src*="hankun"] { height: 26px; width: auto; }
+      /* One upcoming event → center it (no empty half-row) and flag it clearly */
+      #events .upcoming-grid { grid-template-columns: minmax(0, 760px); justify-content: center; }
+      .upcoming-flag { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 20px;
+        padding: 9px 18px; border-radius: 999px; background: var(--lime); color: #fff;
+        font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+      .upcoming-flag::before { content: ""; width: 9px; height: 9px; border-radius: 50%;
+        background: #fff; animation: ltfpulse 1.5s ease-in-out infinite; }
+      @keyframes ltfpulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+      /* Prominent "browse all recaps" CTA under the archive carousels */
+      .archive__all { margin-top: 54px; text-align: center; }
+      .archive__all .button { background: var(--lime); color: #fff; box-shadow: 4px 4px 0 rgba(255,255,255,.22); }
+      .archive__all .button span { color: #fff; }
+    </style>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -160,6 +176,7 @@
                             <span class="corner corner--tl"></span><span class="corner corner--tr"></span><span class="corner corner--bl"></span><span class="corner corner--br"></span>
                         </figure>
                         <div class="upcoming-card__body">
+                            <span class="upcoming-flag">Upcoming event</span>
                             <span class="event-type">Frontier Table · 01</span>
                             <h3>How to Build Your Data Layer for AI Transformation</h3>
                             <p>Palo Alto, CA</p>
@@ -276,6 +293,7 @@
                         </article>
                     </div>
                 </div>
+                <div class="archive__all"><a class="button" href="/recaps/">View all past recaps <span>↗</span></a></div>
             </div>
         </section>
 
