@@ -19,14 +19,25 @@
     <style id="ltf-tweaks">
       /* Han Kun's wordmark is very wide (~6:1) — keep it from dominating the partner grid */
       .partners-grid img[src*="hankun"] { height: 26px; width: auto; }
-      /* One upcoming event → center it (no empty half-row) and flag it clearly */
-      #events .upcoming-grid { grid-template-columns: minmax(0, 760px); justify-content: center; }
-      .upcoming-flag { display: inline-flex; align-items: center; gap: 9px; margin: 0 0 20px;
-        padding: 9px 18px; border-radius: 999px; background: var(--lime); color: #fff;
-        font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-      .upcoming-flag::before { content: ""; width: 9px; height: 9px; border-radius: 50%;
-        background: #fff; animation: ltfpulse 1.5s ease-in-out infinite; }
-      @keyframes ltfpulse { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+      /* Agents' Last Exam for Legal — research collaboration module */
+      .ale { background: var(--lime-soft); }
+      .ale__masthead { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-top: 42px;
+        padding: 24px 30px; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); }
+      .ale__masthead img { height: 46px; width: auto; }
+      .ale__masthead p { margin: 0; color: var(--muted); font-family: var(--sans); font-size: 12px;
+        font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+      .ale-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 18px; }
+      .ale-card { display: flex; flex-direction: column; gap: 11px; padding: 26px 26px 24px;
+        border: 1px solid var(--line); border-radius: 22px; background: var(--surface); text-decoration: none;
+        transition: background .18s ease, transform .18s ease, box-shadow .18s ease; }
+      .ale-card:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(31, 31, 31, .09); }
+      .ale-card__num { font-family: var(--sans); font-size: 12px; font-weight: 800; letter-spacing: .14em;
+        text-transform: uppercase; color: var(--lime); }
+      .ale-card h3 { font-size: 23px; letter-spacing: -.035em; }
+      .ale-card p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.5; }
+      .ale-card__go { margin-top: auto; padding-top: 14px; font-family: var(--sans); font-size: 14px;
+        font-weight: 700; color: var(--blue-deep); }
+      @media (max-width: 900px) { .ale-links { grid-template-columns: 1fr; } .ale__masthead { gap: 18px; } }
       /* Prominent "browse all recaps" CTA under the archive carousels */
       .archive__all { margin-top: 54px; text-align: center; }
       .archive__all .button { background: var(--lime); color: #fff; box-shadow: 4px 4px 0 rgba(255,255,255,.22); }
@@ -73,12 +84,12 @@
                     <p class="hero__founded">Founded in Silicon Valley since 2025</p>
                     <p class="hero__lead">A practitioner-driven legal AI community connecting <strong>1,000+ professionals</strong> across the US and Asia — where lawyers and builders meet to shape an AI-native legal profession.</p>
                     <div class="hero__actions">
-                        <a class="button button--primary" href="/events">Upcoming Event <span>↗</span></a>
+                        <a class="button button--primary" href="/recaps/">Event Recaps <span>↗</span></a>
                         <a class="button button--ghost" href="/join">Join the Community</a>
                     </div>
                     <div class="hero__stats" aria-label="Community statistics">
                         <div><strong>1,000+</strong><span>Members</span></div>
-                        <div><strong>12</strong><span>In-person events</span></div>
+                        <div><strong>13</strong><span>In-person events</span></div>
                         <div><strong>7</strong><span>Cities</span></div>
                     </div>
                 </div>
@@ -107,7 +118,7 @@
                     </div>
                     <div class="about__body">
                         <p>Legal Tech Frontier is a practitioner-driven community for the people building the future of legal work. Founded in Silicon Valley, we connect <strong>1,000+ attorneys, in-house counsel, legal ops professionals, and legal tech builders</strong> across the US and Asia.</p>
-                        <p>Since 2025, we've hosted 12 in-person gatherings — from Stanford and Facebook House to New York, Beijing, Shanghai, Shenzhen, Hong Kong, and Tokyo — where practitioners share what's <em>actually</em> working with AI in legal practice. No hype, no vendor pitches — just honest conversations between the people doing the work.</p>
+                        <p>Since 2025, we've hosted 13 in-person gatherings — from Stanford and Facebook House to New York, Beijing, Shanghai, Shenzhen, Hong Kong, and Tokyo — where practitioners share what's <em>actually</em> working with AI in legal practice. No hype, no vendor pitches — just honest conversations between the people doing the work.</p>
                     </div>
                 </div>
 
@@ -159,35 +170,7 @@
             </div>
         </section>
 
-        <section class="section events" id="events">
-            <div class="container">
-                <div class="section-rule"><span>Upcoming events · 2026</span></div>
-                <div class="section-heading section-heading--split">
-                    <div>
-                        <p class="eyebrow"><span></span>On the calendar</p>
-                        <h2>Meet at the <em>frontier</em><i>.</i></h2>
-                    </div>
-                </div>
-                <div class="upcoming-grid">
-                    <article class="upcoming-card">
-                        <figure class="event-image">
-                            <img src="img/events/upcoming-data-layer.png" alt="How to Build Your Data Layer for AI Transformation event poster" loading="lazy">
-                            <span class="event-image__date">Aug 11 · 2026</span>
-                            <span class="corner corner--tl"></span><span class="corner corner--tr"></span><span class="corner corner--bl"></span><span class="corner corner--br"></span>
-                        </figure>
-                        <div class="upcoming-card__body">
-                            <span class="upcoming-flag">Upcoming event</span>
-                            <span class="event-type">Frontier Table · 01</span>
-                            <h3>How to Build Your Data Layer for AI Transformation</h3>
-                            <p>Palo Alto, CA</p>
-                            <a class="button button--primary" href="https://luma.com/aalhoruq" target="_blank" rel="noopener noreferrer">Join Waitlist <span>↗</span></a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="section archive" id="archive">
+        <section class="section archive" id="events">
             <div class="container">
                 <div class="section-rule"><span>Event archive · US / Asia</span></div>
                 <div class="archive__intro">
@@ -202,9 +185,9 @@
                     <div class="series-block__heading"><span>01</span><div><h3>Frontier Table</h3><p>Closed-door, invite-only roundtables for firm and legal-department leaders.</p></div></div>
                     <div class="event-row" data-auto-carousel data-carousel-speed="30" role="region" aria-label="Frontier Table events, automatically scrolling. Drag to browse." tabindex="0">
                         <article class="event-card">
-                            <a href="https://luma.com/aalhoruq" target="_blank" rel="noopener noreferrer" aria-label="Join waitlist for How to Build Your Data Layer for AI Transformation">
-                                <figure><img src="img/events/upcoming-data-layer.png" alt="How to Build Your Data Layer for AI Transformation event poster" loading="lazy"><span>Aug 2026</span></figure>
-                                <div><p>Palo Alto, CA</p><h4>How to Build Your Data Layer for AI Transformation</h4><span class="event-card__link">Join Waitlist ↗</span></div>
+                            <a href="/recaps/data-layer-ai-transformation/">
+                                <figure><img src="img/events/13-pillsbury-data-layer.jpg" alt="How to Build Your Data Layer for AI Transformation roundtable at Pillsbury Winthrop Shaw Pittman, Palo Alto, group photo" loading="lazy"><span>Aug 2026</span></figure>
+                                <div><p>Pillsbury Winthrop Shaw Pittman LLP, Palo Alto, CA</p><h4>How to Build Your Data Layer for AI Transformation</h4><span class="event-card__link">View Recap ↗</span></div>
                             </a>
                         </article>
                         <article class="event-card">
@@ -297,6 +280,43 @@
             </div>
         </section>
 
+        <section class="section ale" id="ale">
+            <div class="container">
+                <div class="section-rule"><span>Research collaboration · Open benchmark</span></div>
+                <div class="section-heading section-heading--split">
+                    <div>
+                        <p class="eyebrow"><span></span>Legal Tech Frontier × UC Berkeley RDI</p>
+                        <h2>Agents&rsquo; Last Exam <em>for Legal</em><i>.</i></h2>
+                    </div>
+                    <p>Legal Tech Frontier is collaborating with the Agents&rsquo; Last Exam team at the Center for Responsible, Decentralized Intelligence (RDI) at the University of California, Berkeley on an independent, open-source benchmark for legal agents — built by experienced lawyers on real cases.</p>
+                </div>
+                <div class="ale__masthead">
+                    <img src="img/ale/rdi-logo.png" alt="UC Berkeley Center for Responsible, Decentralized Intelligence" loading="lazy">
+                    <p>In partnership with Legal Tech Frontier</p>
+                </div>
+                <div class="ale-links">
+                    <a class="ale-card" href="https://rdi.berkeley.edu/blog/agents-last-exam/" target="_blank" rel="noopener noreferrer">
+                        <span class="ale-card__num">01 · RDI Page</span>
+                        <h3>Agents&rsquo; Last Exam at Berkeley RDI</h3>
+                        <p>The project announcement from the Center for Responsible, Decentralized Intelligence.</p>
+                        <span class="ale-card__go">rdi.berkeley.edu ↗</span>
+                    </a>
+                    <a class="ale-card" href="https://agents-last-exam.org/" target="_blank" rel="noopener noreferrer">
+                        <span class="ale-card__num">02 · ALE Page</span>
+                        <h3>The benchmark itself</h3>
+                        <p>55 occupations and 1,500+ tasks, each sourced from a real project a working professional actually completed.</p>
+                        <span class="ale-card__go">agents-last-exam.org ↗</span>
+                    </a>
+                    <a class="ale-card" href="/ale-legal/">
+                        <span class="ale-card__num">03 · Latest notification</span>
+                        <h3>Building the Next-Gen Legal AI Benchmark</h3>
+                        <p>What we are doing, who has joined, and the open call for an Engineering / Research Lead.</p>
+                        <span class="ale-card__go">Read the announcement ↗</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <section class="section partners" id="partners">
             <div class="container">
                 <div class="section-rule"><span>Event partners &amp; co-hosts</span></div>
@@ -309,6 +329,7 @@
                 </div>
                 <div class="partners-grid">
                     <a href="https://www.stanford.edu" target="_blank" rel="noopener noreferrer"><img src="img/partners/stanford.png" alt="Stanford University" loading="lazy"><span>Stanford University</span></a>
+                    <a href="https://www.berkeley.edu" target="_blank" rel="noopener noreferrer"><img src="img/partners/berkeley.svg" alt="University of California, Berkeley" loading="lazy"><span>University of California, Berkeley</span></a>
                     <a href="https://www.pku.edu.cn" target="_blank" rel="noopener noreferrer"><img src="img/partners/pku.png" alt="Peking University" loading="lazy"><span>Peking University</span></a>
                     <a href="https://www.cooley.com" target="_blank" rel="noopener noreferrer"><img src="img/partners/cooley.svg" alt="Cooley LLP" loading="lazy"><span>Cooley LLP</span></a>
                     <a href="https://www.pillsburylaw.com" target="_blank" rel="noopener noreferrer"><img src="img/partners/pillsbury.png" alt="Pillsbury Winthrop Shaw Pittman LLP" loading="lazy"><span>Pillsbury</span></a>

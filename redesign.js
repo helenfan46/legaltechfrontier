@@ -101,7 +101,8 @@
         '.city-globe__legend > span',
         '.section-heading > *',
         '.practice-card',
-        '.upcoming-card',
+        '.ale__masthead',
+        '.ale-card',
         '.archive__intro > *',
         '.series-block',
         '.partners-grid > *',
@@ -114,7 +115,7 @@
 
     revealTargets.forEach((target) => {
         target.classList.add('motion-reveal');
-        if (target.matches('.practice-card, .upcoming-card, .city-globe__visual, .series-block, .partners-grid > *, .home-contact__card')) {
+        if (target.matches('.practice-card, .ale-card, .city-globe__visual, .series-block, .partners-grid > *, .home-contact__card')) {
             target.dataset.motion = 'scale';
         }
         const siblings = target.parentElement ? Array.from(target.parentElement.children) : [];

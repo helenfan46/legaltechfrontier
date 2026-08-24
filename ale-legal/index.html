@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LTF × UC Berkeley: Building the Next-Gen Legal AI Benchmark — Legal Tech Frontier</title>
+  <meta property="og:title" content="LTF × UC Berkeley: Building the Next-Gen Legal AI Benchmark — Legal Tech Frontier">
+  <meta property="og:description" content="Legal Tech Frontier × UC Berkeley RDI — an independent, open-source benchmark for legal agents. Agents’ Last Exam for Legal.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://legaltechfrontier.com/ale-legal/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .recaps-hero { padding: 7rem 0 2.5rem; text-align:center; }
+    .recaps-hero h1 { font-size: clamp(2.2rem,5vw,3.4rem); line-height:1.15; margin-bottom:1rem; }
+    .recaps-hero p { color: var(--text-secondary); max-width:640px; margin:0 auto; line-height:1.7; }
+    .recaps-wrap { max-width: 900px; margin: 0 auto; padding: 0 var(--spacing-sm) 5rem; }
+    .recap-card { display:flex; gap:1.1rem; align-items:center; text-decoration:none;
+                  border:1px solid rgba(255,255,255,.09); border-radius:16px; margin-bottom:1rem;
+                  background: var(--bg-card); padding:1rem 1.2rem; transition:border-color .25s, transform .25s; }
+    .recap-card:hover { border-color: rgba(102,126,234,.55); transform: translateY(-2px); }
+    .recap-thumb { flex:0 0 auto; width:96px; height:70px; border-radius:10px; background-size:cover;
+                   background-position:center; box-shadow:0 4px 14px rgba(0,0,0,.35); }
+    .recap-head { display:flex; flex-direction:column; gap:.28rem; min-width:0; }
+    .recap-when { font-size:.74rem; letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
+    .recap-title { font-size:1.14rem; font-weight:700; color:var(--text-primary); line-height:1.3; }
+    .recap-cta { font-size:.8rem; color:var(--accent-blue); font-weight:600; }
+    /* article page */
+    .recap-hero { padding: 6.5rem 0 1.5rem; }
+    .recap-hero-inner { max-width: 820px; margin:0 auto; }
+    .recap-back { display:inline-block; color:var(--text-muted); text-decoration:none; font-size:.85rem;
+                  margin-bottom:1.4rem; transition:color .2s; }
+    .recap-back:hover { color:var(--accent-blue); }
+    .recap-eyebrow { font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text-muted);
+                     margin-bottom:.9rem; }
+    .recap-h1 { font-family:"Playfair Display",serif; font-weight:600; font-size:clamp(1.9rem,4.2vw,2.9rem);
+                line-height:1.2; margin:0 0 1rem; background:var(--gradient-secondary);
+                -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+    .recap-note { color:var(--text-muted); font-size:.85rem; font-style:italic; }
+    .recap-banner { max-width:820px; height:340px; margin:1rem auto 0; border-radius:18px;
+                    background-size:cover; background-position:center; box-shadow:0 12px 40px rgba(0,0,0,.4); }
+    .recap-article { max-width:720px; margin:0 auto; padding: 2.4rem var(--spacing-sm) 4rem; }
+    .recap-article p { color:var(--text-secondary); line-height:1.85; margin:0 0 1.15rem; font-size:1.03rem; }
+    .recap-article h3 { color:var(--text-primary); font-size:1.35rem; margin:2.3rem 0 .9rem; }
+    .recap-article h4 { color:var(--text-primary); font-size:1.08rem; margin:1.7rem 0 .6rem; }
+    .recap-article ul { margin:0 0 1.2rem 1.2rem; color:var(--text-secondary); line-height:1.8; }
+    .recap-article li { margin:.4rem 0; }
+    .recap-article blockquote { margin:1.6rem 0; padding:.7rem 0 .7rem 1.2rem;
+                     border-left:3px solid var(--accent-purple); color:var(--text-primary);
+                     font-size:1.12rem; font-style:italic; line-height:1.6; }
+    .recap-pager { max-width:720px; margin:0 auto; padding:0 var(--spacing-sm) 5rem; display:flex;
+                   justify-content:space-between; gap:1rem; border-top:1px solid rgba(255,255,255,.08);
+                   padding-top:1.6rem; }
+    .recap-pager a { color:var(--text-secondary); text-decoration:none; font-size:.9rem; max-width:46%;
+                     transition:color .2s; }
+    .recap-pager a:hover { color:var(--accent-blue); }
+    .recap-pager .nl { text-align:right; margin-left:auto; }
+    .recap-pager small { display:block; color:var(--text-muted); font-size:.72rem; text-transform:uppercase;
+                         letter-spacing:.06em; margin-bottom:.25rem; }
+    .recap-figure { margin:2rem 0; }
+    .recap-figure img { width:100%; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+    .recap-figure figcaption { margin-top:.6rem; text-align:center; color:var(--text-muted);
+                     font-size:.82rem; font-style:italic; }
+    .recap-divider { border:0; border-top:1px solid rgba(255,255,255,.1); margin:2.8rem 0; }
+    @media (max-width:560px) {
+      .recap-thumb { width:74px; height:58px; }
+      .recap-title { font-size:1rem; }
+      .recap-banner { height:210px; }
+    }
+</style>
+  <link rel="stylesheet" href="/subpages.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="container">
+      <div class="nav-brand"><a href="/" style="color:inherit;text-decoration:none;">Legal Tech Frontier</a></div>
+      <div class="nav-links">
+        <a href="/#about">About</a>
+        <a href="/#events">Events</a>
+        <a href="/recaps/">Recaps</a>
+        <a href="/#partners">Event Partners</a>
+        <a href="/#join">Join Us</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <header class="recap-hero">
+    <div class="container recap-hero-inner">
+      <a class="recap-back" href="/#ale">&larr; Agents&rsquo; Last Exam for Legal</a>
+      <div class="recap-eyebrow">Latest notification &middot; Legal Tech Frontier &times; UC Berkeley RDI</div>
+      <h1 class="recap-h1">LTF x UC Berkeley: Building the Next-Gen Legal AI Benchmark</h1>
+      <p class="recap-note">Agents&rsquo; Last Exam for Legal &mdash; an independent, open-source benchmark for legal agents.</p>
+    </div>
+  </header>
+  <article class="recap-article">
+<p>Legal AI is desperate for a credible benchmark built by experienced lawyers on real cases.</p>
+<p>More and more lawyers are finding that agents do not perform well enough on legal work, especially on complex matters. Part of why that is hard to fix is that we cannot say precisely where they fall short.</p>
+<p>Meanwhile, partners and GCs are not short on products. They are short on anyone they can trust to tell them which one is better. And the most widely used open benchmark in legal AI today was built by a player in the market.</p>
+<p>So here is what we are doing about it:</p>
+<p>Legal Tech Frontier, our community, is collaborating with the Agents&rsquo; Last Exam team at the Center for Responsible, Decentralized Intelligence (RDI) at University of California, Berkeley on an independent, open-source benchmark for legal agents. The project is &ldquo;Agents&rsquo; Last Exam for Legal&rdquo;, part of ALE:</p>
+<ul>
+<li>RDI Page &#10145;&#65039; <a href="https://rdi.berkeley.edu/blog/agents-last-exam/" target="_blank" rel="noopener noreferrer">https://rdi.berkeley.edu/blog/agents-last-exam/</a></li>
+<li>ALE Page &#10145;&#65039; <a href="https://agents-last-exam.org/" target="_blank" rel="noopener noreferrer">https://agents-last-exam.org/</a></li>
+</ul>
+<p>ALE has covered 55 occupations and 1,500+ tasks, each one sourced from a real project a working professional actually completed.</p>
+<p>When OpenAI announced GPT-5.6, ALE was the first benchmark it led with.</p>
+<p>We are thrilled to have invited Wei Chen, founder of The Atticus Project and a leading expert in legal benchmarking, to join us.</p>
+
+<h3>Open call: Engineering / Research Lead, ALE for Legal</h3>
+<p>We are now looking for a full-time Engineering / Research Lead for ALE for Legal.</p>
+<p>The lead will be co-first author on the legal domain benchmark paper, and named as &ldquo;Domain Lead&rdquo; in ALE&rsquo;s general submission to Nature family.</p>
+<p><strong>Estimated time commitment:</strong> 30&ndash;40 hours per week</p>
+<h4>Qualifications &amp; expectations</h4>
+<ul>
+<li>Strong expertise in AI Agent evaluation, experimentation, and testing</li>
+<li>Deep passion for building domain-specific Legal AI benchmarks</li>
+<li>Master&rsquo;s or Ph.D. in AI, Computer Science, or a closely related field (US/North America-based preferred)</li>
+</ul>
+<h4>Core responsibilities (Domain Lead)</h4>
+<ul>
+<li><strong>Design &amp; Build:</strong> Lead the architecture of long-horizon tasks and evaluation environments tailored for the legal domain.</li>
+<li><strong>Coordinate &amp; Curate:</strong> Collaborate with domain experts and attorneys to design, review, and ingest high-quality benchmark tasks and workflows.</li>
+<li><strong>Drive End-to-End Execution:</strong> Actively drive ongoing benchmark iterations, model evaluations, and co-authoring the benchmark paper.</li>
+</ul>
+<p>Please note this is a volunteer research role / non-salaried academic collaboration, ideal for researchers, PhDs, or engineers looking to lead a high-impact open-source benchmark with top-tier academic visibility.</p>
+<p>If that sounds like a fit, please send your resume and background to <a href="mailto:legal@agents-last-exam.org">legal@agents-last-exam.org</a>, and CC <a href="mailto:helenfan@legaltechfrontier.com">helenfan@legaltechfrontier.com</a>, with the email subject line: <strong>&ldquo;ALE for Legal - Engineering Lead (Legal Tech Frontier)&rdquo;</strong>.</p>
+<p>While we may not be able to reply to every email individually, please feel free to send a quick DM to <a href="https://www.linkedin.com/in/helenfanlegalai/" target="_blank" rel="noopener noreferrer">Helen Fan on LinkedIn</a> if your inquiry is time-sensitive.</p>
+<p>We will also open a separate call for experienced lawyers as core contributors as the next step. We want a number of people who have spent years doing legal work and can tell in one look whether a task is real. So stay tuned!</p>
+<blockquote>Let&rsquo;s do something big to help reshape the industry!</blockquote>
+<p style="margin-top:2.2rem;padding-top:1.4rem;border-top:1px solid rgba(255,255,255,.08);"><a href="/#ale" style="color:var(--accent-blue);font-weight:600;text-decoration:none;">&larr; Back to Agents&rsquo; Last Exam for Legal</a></p>
+  </article>
+  <footer class="footer">
+    <div class="container"><p>&copy; 2025-2026 Legal Tech Frontier. Built with curiosity and care.</p></div>
+  </footer>
+  <script src="/subpages.js"></script>
+</body>
+</html>
